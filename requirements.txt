@@ -1,0 +1,13 @@
+polars>=0.20.0
+pandas>=2.1.0
+psycopg2-binary>=2.9.9
+sqlalchemy>=2.0.25
+dbt-core>=1.7.0
+dbt-postgres>=1.7.0
+rapidfuzz>=3.6.0
+nltk>=3.8.1
+requests>=2.31.0
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+pytest>=8.0.0
+pytest-cov>=4.1.0
