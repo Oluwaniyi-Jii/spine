@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_work
+    description: "Conformed dimension representing intellectual literary works"
+    columns:
+      - name: work_key
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_author
+    description: "Conformed dimension representing authors with authority identifiers"
+    columns:
+      - name: author_key
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_publisher
+    description: "Conformed dimension for normalized publishing entities"
+    columns:
+      - name: publisher_key
+        tests:
+          - not_null
+          - unique
