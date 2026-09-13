@@ -1,7 +1,10 @@
 import os
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-load_dotenv()
 
 POSTGRES_USER = os.getenv("POSTGRES_USER", "shelf_user")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "shelf_password")
