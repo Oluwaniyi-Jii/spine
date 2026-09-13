@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: raw
+    database: shelf_db
+    schema: raw
+    tables:
+      - name: openlibrary_works
+      - name: openlibrary_editions
+      - name: openlibrary_authors
+      - name: gutenberg_catalog
+      - name: viaf_author_authority
+
+models:
+  - name: stg_openlibrary_works
+    description: "Staged Open Library canonical works metadata"
+    columns:
+      - name: openlibrary_work_id
+        description: "Primary key in Open Library"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_openlibrary_editions
+    description: "Staged Open Library published edition records"
+    columns:
+      - name: openlibrary_edition_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_openlibrary_authors
+    description: "Staged Open Library author entity records"
+    columns:
+      - name: openlibrary_author_id
+        tests:
+          - not_null
+          - unique
