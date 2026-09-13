@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_gutenberg_catalog
+    description: "Staged Project Gutenberg catalog eBooks"
+    columns:
+      - name: gutenberg_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_viaf_authors
+    description: "Staged VIAF authority records for author resolution"
+    columns:
+      - name: viaf_id
+        tests:
+          - not_null
+          - unique
