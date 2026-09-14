@@ -1,39 +1,59 @@
 # Shelf
 
-Shelf is a data warehouse for exploring the publishing history of books.
+**Shelf** is an analytical data warehouse that reconstructs the publishing history of books by integrating public bibliographic datasets, resolving entities across sources, modeling works and editions dimensionally, and producing historical analytics around publishing, authors, languages, subjects, and formats.
 
-It integrates public bibliographic data from sources such as [Open Library](https://openlibrary.org/), [Project Gutenberg](https://www.gutenberg.org/), and VIAF to build a canonical view of works, editions, authors, publishers, languages, and subjects.
+---
 
-The project focuses on the data engineering problems behind bibliographic data: ingestion, normalization, entity resolution, data quality, historical modeling, and analytical warehousing.
+## Technical Stack
 
-## Goals
+* **Processing Engine**: Python 3.11 / Polars
+* **Data Warehouse**: PostgreSQL 16 (Schemas: `raw`, `staging`, `intermediate`, `warehouse`, `marts`, `meta`)
+* **Data Transformation**: dbt (Data Build Tool)
+* **Orchestration**: Apache Airflow 2.8
+* **Entity Resolution**: RapidFuzz (Jaro-Winkler title & Levenshtein author matching) + Exact ISBN/VIAF/LCCN matchers
+* **Literary Text Analytics**: NLTK Readability & Dialogue Metrics
+* **Containers & Infrastructure**: Docker & Docker Compose
+* **Visual Dashboards**: Power BI Star Schema & DAX Measures
 
-* Ingest large public bibliographic datasets
-* Normalize and reconcile records across different sources
-* Model books as works and individual editions
-* Track source provenance and data quality
-* Build a dimensional data warehouse with PostgreSQL and dbt
-* Produce analytical datasets for publishing and literary trends
-
-## Stack
-
-* Python
-* PostgreSQL
-* dbt
-* Apache Airflow
-* Docker
-* Power BI
-* GitHub Actions
+---
 
 ## Data Sources
 
-* Open Library — works, editions, authors, and bibliographic metadata
-* Project Gutenberg — public-domain texts and metadata
-* VIAF — authority data for resolving author identities
-* Additional sources may be added for enrichment and validation
+* **Open Library**: Bulk dump files (`ol_dump_works.txt.gz`, `ol_dump_editions.txt.gz`, `ol_dump_authors.txt.gz`)
+* **Project Gutenberg**: Catalog metadata feeds & plain text eBook files
+* **VIAF (Virtual International Authority File)**: Author identity authority records
+* **Library of Congress & Google Books**: Catalog verification and metadata enrichment
 
-## Status
+---
 
-**In development**
+## Project Documentation
 
-The initial focus is on building the ingestion and warehouse layers before adding analytical models and dashboards.
+- [Architecture Overview](docs/architecture.md)
+- [Entity Resolution Methodology](docs/entity_resolution.md)
+- [Data Dictionary](docs/data_dictionary.md)
+- [Power BI Dashboard Guide](docs/powerbi_dashboard_guide.md)
+
+---
+
+## Quickstart
+
+```bash
+# Start Docker environment (PostgreSQL 16)
+make up
+
+# Run unit & integration test suite
+make test
+
+# Ingest raw Open Library & Gutenberg data
+make ingest-ol
+make ingest-gutenberg
+
+# Execute Entity Resolution Reconciliation
+make reconcile
+
+# Build dbt Data Warehouse Models
+make dbt-run
+
+# Run dbt Data Quality Assertions
+make dbt-test
+```
