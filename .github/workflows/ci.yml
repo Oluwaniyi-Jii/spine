@@ -26,10 +26,10 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: "pip"
@@ -39,6 +39,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Initialize Database Schemas
+        run: |
+          python -m src.utils.db
+
       - name: Run Pytest Suite
         run: |
           pytest tests/ -v
@@ -46,4 +50,6 @@ jobs:
       - name: Validate dbt Project Compilation
         run: |
           cd dbt
+          dbt deps --profiles-dir .
           dbt compile --profiles-dir .
+

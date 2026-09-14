@@ -1,4 +1,5 @@
 -- Raw schema table definitions for heterogeneous source data ingestion
+CREATE SCHEMA IF NOT EXISTS raw;
 
 -- Open Library Works Raw Storage
 CREATE TABLE IF NOT EXISTS raw.openlibrary_works (

@@ -1,4 +1,5 @@
 -- Metadata, Audit, and Provenance Audit tables
+CREATE SCHEMA IF NOT EXISTS meta;
 
 CREATE TABLE IF NOT EXISTS meta.ingestion_log (
     batch_id VARCHAR(100) PRIMARY KEY,
