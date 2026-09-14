@@ -1,0 +1,17 @@
+// Total Editions Count
+Total Editions = COUNTROWS('fact_edition')
+
+// Total Unique Works Count
+Total Works = DISTINCTCOUNT('dim_work'[work_key])
+
+// Total Authors Count
+Total Authors = DISTINCTCOUNT('dim_author'[author_key])
+
+// Average Career Length (Years)
+Avg Career Length = AVERAGE('mart_author_longevity'[publishing_career_span_years])
+
+// Readability Index Average
+Avg Readability Score = AVERAGE('fact_text_statistics'[readability_score])
+
+// Translation Count
+Total Translations = COUNTROWS(FILTER('fact_edition', 'fact_edition'[language_key] <> MD5("eng")))

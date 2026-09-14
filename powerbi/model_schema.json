@@ -1,0 +1,33 @@
+{
+  "model_name": "Shelf_Publishing_Warehouse",
+  "data_sources": [
+    {
+      "name": "Shelf_PostgreSQL",
+      "type": "PostgreSQL",
+      "schema": "marts"
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": "fact_edition",
+      "from_column": "work_key",
+      "to_table": "dim_work",
+      "to_column": "work_key",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from_table": "fact_edition",
+      "from_column": "publisher_key",
+      "to_table": "dim_publisher",
+      "to_column": "publisher_key",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from_table": "fact_edition",
+      "from_column": "publication_date_key",
+      "to_table": "dim_date",
+      "to_column": "date_key",
+      "cardinality": "many_to_one"
+    }
+  ]
+}
