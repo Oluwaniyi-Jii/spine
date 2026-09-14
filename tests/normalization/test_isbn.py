@@ -11,9 +11,10 @@ def test_clean_isbn():
 
 def test_validate_isbn10():
     assert validate_isbn10("0743273567") is True
-    assert validate_isbn10("039302030X") is True
+    assert validate_isbn10("097522980X") is True
     assert validate_isbn10("0000000000") is True
     assert validate_isbn10("1234567890") is False
+
 
 def test_validate_isbn13():
     assert validate_isbn13("9780743273565") is True

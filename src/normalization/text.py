@@ -32,16 +32,18 @@ def sanitize_title(title: str) -> str:
     
     t = remove_diacritics(title).strip()
     
+    # Remove bracketed descriptions e.g. "The Great Gatsby [1925]"
+    t = re.sub(r'\[.*?\]', '', t).strip()
+
     # Check for "Title, The" / "Title, A" / "Title, An"
     article_match = re.match(r'^(.*),\s*(the|a|an)$', t, re.IGNORECASE)
     if article_match:
         t = f"{article_match.group(2).capitalize()} {article_match.group(1).strip()}"
     
-    # Remove bracketed descriptions e.g. "The Great Gatsby [1925]"
-    t = re.sub(r'\[.*?\]', '', t)
     # Normalize spaces
     t = re.sub(r'\s+', ' ', t).strip()
     return t
+
 
 def normalize_publisher(publisher_str: str) -> str:
     """Normalize messy publisher strings to canonical company names."""

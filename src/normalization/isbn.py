@@ -10,6 +10,7 @@ def clean_isbn(isbn_str: str) -> str:
 
 def validate_isbn10(isbn10: str) -> bool:
     """Validate ISBN-10 checksum."""
+    isbn10 = str(isbn10).upper()
     if len(isbn10) != 10:
         return False
     if not re.match(r'^\d{9}[\dX]$', isbn10):
@@ -23,6 +24,7 @@ def validate_isbn10(isbn10: str) -> bool:
     total += 10 if last_char == 'X' else int(last_char)
     
     return total % 11 == 0
+
 
 def validate_isbn13(isbn13: str) -> bool:
     """Validate ISBN-13 checksum."""

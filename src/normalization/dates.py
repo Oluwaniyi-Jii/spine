@@ -10,10 +10,11 @@ def extract_publication_year(raw_date_str: str) -> Optional[int]:
         return None
 
     # Search for 4-digit years between 1000 and 2029
-    match = re.search(r'\b(1[0-9]{3}|20[0-2][0-9])\b', str(raw_date_str))
+    match = re.search(r'(?<!\d)(1[0-9]{3}|20[0-2][0-9])(?!\d)', str(raw_date_str))
     if match:
         year = int(match.group(1))
         return year
+
 
     return None
 
