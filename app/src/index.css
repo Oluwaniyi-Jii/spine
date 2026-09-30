@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --bg-main: #0B0E14;
+    --bg-card: #121721;
+    --bg-card-hover: #1A2230;
+    --border-subtle: #242E40;
+    --border-bright: #3D4E6B;
+    
+    --accent-amber: #E2A970;
+    --accent-amber-glow: rgba(226, 169, 112, 0.15);
+    --accent-copper: #D97706;
+    --accent-cyan: #38BDF8;
+    --accent-emerald: #10B981;
+    
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+  }
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-editorial {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Bespoke Archival Catalog Card styling */
+.archival-card {
+  background-color: #121721;
+  border: 1px solid #242E40;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.archival-card:hover {
+  border-color: #3D4E6B;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+.archival-card-active {
+  border-color: #E2A970;
+  background-color: #161D2A;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0E14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #242E40;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3D4E6B;
+}
